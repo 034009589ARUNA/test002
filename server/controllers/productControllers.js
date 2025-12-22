@@ -68,7 +68,8 @@ export const getTopRated = async (req, res) => {
 //Get best Sellers
 export const getBestSellers = async (req, res) => {
     try {
-        const products = await Products.find()
+        const topBrands = ["Nike", "Adidas", "Puma", "Skechers"] // list of top brands
+        const products = await Products.find({ brand: { $in: topBrands } }) // filter by brand
             .sort({ reviews: -1 })
             .limit(12);
 
